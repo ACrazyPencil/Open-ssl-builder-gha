@@ -48,7 +48,7 @@ jobs:
             setx /M PATH "%PATH%;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\14.40.33816\bin\Hostx64\x64"
             git clone https://github.com/badrelmers/RefrEnv
             cd RefrEnv
-            call refrenv.bat
+            & ./refrenv.bat
             cd ..
         
       - name: Download Source
