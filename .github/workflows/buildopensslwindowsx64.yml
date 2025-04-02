@@ -35,7 +35,8 @@ jobs:
           from-source: false
           platform: win64
           version: 2.16.03
-
+          destination: $HOME/nasm
+    
       - name: Setup Perl environment
         uses: shogo82148/actions-setup-perl@v1.33.0
   
@@ -56,6 +57,7 @@ jobs:
       - name: Build OpenSSL
         shell: cmd
         run: |
+          set PATH "%PATH%;$HOME\nasm"
           call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
           mkdir out
           cd out
