@@ -35,7 +35,7 @@ jobs:
           from-source: false
           platform: win64
           version: 2.16.03
-          destination: $HOME/nasm
+          destination: C:/nasm
     
       - name: Setup Perl environment
         uses: shogo82148/actions-setup-perl@v1.33.0
@@ -46,6 +46,10 @@ jobs:
             powershell -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
             choco install visualstudio2022community --package-parameters "--norestart --wait --passive --add Microsoft.VisualStudio.Component.CoreEditor;Microsoft.VisualStudio.Workload.CoreEditor;Microsoft.VisualStudio.Workload.VCTools;includeRecommended;includeOptional"
             setx /M PATH "%PATH%;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\14.40.33816\bin\Hostx64\x64"
+            git clone https://github.com/badrelmers/RefrEnv
+            cd RefrEnv
+            call refrenv.bat
+            cd ..
         
       - name: Download Source
         uses: robinraju/release-downloader@v1.12
