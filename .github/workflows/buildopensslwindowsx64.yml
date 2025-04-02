@@ -45,6 +45,7 @@ jobs:
         run: |
             powershell -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
             choco install visualstudio2022community --package-parameters "--norestart --wait --passive --add Microsoft.VisualStudio.Component.CoreEditor;Microsoft.VisualStudio.Workload.CoreEditor;Microsoft.VisualStudio.Workload.VCTools;includeRecommended;includeOptional"
+            setx /M PATH "%PATH%;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\14.40.33816\bin\Hostx64\x64"
         
       - name: Download Source
         uses: robinraju/release-downloader@v1.12
@@ -57,7 +58,6 @@ jobs:
       - name: Build OpenSSL
         shell: cmd
         run: |
-          set PATH "%PATH%;$HOME\nasm"
           call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
           mkdir out
           cd out
@@ -76,4 +76,4 @@ jobs:
           body: "Openssl Compiled"
           name: "Openssl"
           tag: "openssl"
-          owner: "pizzapi2012"
+          owner: "ACrazyPencil"
